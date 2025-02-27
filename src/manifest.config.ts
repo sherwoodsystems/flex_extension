@@ -12,19 +12,17 @@ const [major, minor, patch] = version
 
 export default defineManifest(async () => ({
     manifest_version: 3,
-    name: "Chrome Extension Svelte Typescript Boilerplate",
-    description: "Boilerplate for Chrome Extension Svelte Typescript project",
+    name: "Fix Flex",
+    description: "Automates tasks in Flex Rental Solutions",
     version: `${major}.${minor}.${patch}`,
     version_name: version,
     icons: {
-        "16": "src/assets/icons/icon-16.png",
-        "32": "src/assets/icons/icon-32.png",
         "48": "src/assets/icons/icon-48.png",
         "128": "src/assets/icons/icon-128.png",
     },
     content_scripts: [
         {
-            matches: ["https://*/*"],
+            matches: ["https://sherwood.flexrentalsolutions.com/*"],
             js: ["src/content/index.ts"],
         },
     ],
@@ -41,11 +39,9 @@ export default defineManifest(async () => ({
     action: {
         default_popup: "src/popup/popup.html",
         default_icon: {
-            "16": "src/assets/icons/icon-16.png",
-            "32": "src/assets/icons/icon-32.png",
             "48": "src/assets/icons/icon-48.png",
             "128": "src/assets/icons/icon-128.png",
         },
     },
-    permissions: ["storage", "sidePanel"] as chrome.runtime.ManifestPermissions[],
+    permissions: ["storage", "tabs", "commands", "sidePanel"] as chrome.runtime.ManifestPermissions[],
 }));

@@ -1,13 +1,18 @@
-import { count } from "../storage";
+import { QuoteManager } from '../lib/QuoteManager';
+// import { setupWebRequestListeners } from './webRequestListeners';
+// import { setupMessageHandlers } from './messageHandlers';
+// import { setupTabListeners } from './tabListeners';
 
-// Background service workers
-// https://developer.chrome.com/docs/extensions/mv3/service_workers/
+// Initialize the background script
+function init() {
+    const quoteManager = QuoteManager.getInstance();
+    
+    // Setup all listeners
+//     setupWebRequestListeners(quoteManager);
+//     setupMessageHandlers(quoteManager);
+//     setupTabListeners(quoteManager);
+// 
+}
 
-chrome.runtime.onInstalled.addListener(() => {
-    count.subscribe(console.log);
-});
-
-// NOTE: If you want to toggle the side panel from the extension's action button,
-// you can use the following code:
-// chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: true })
-//    .catch((error) => console.error(error));
+// Initialize when extension is installed or updated
+chrome.runtime.onInstalled.addListener(init);
